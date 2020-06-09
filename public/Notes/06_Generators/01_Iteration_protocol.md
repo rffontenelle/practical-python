@@ -1,4 +1,6 @@
-[Contents](../Contents.md) \| [Previous (5.2 Encapsulation)](../05_Object_model/02_Classes_encapsulation.md) \| [Next (6.2 Customizing Iteration)](02_Customizing_iteration.md)
+[Contents](../Contents.md) \| [Previous (5.2
+Encapsulation)](../05_Object_model/02_Classes_encapsulation.md) \| [Next
+(6.2 Customizing Iteration)](02_Customizing_iteration.md)
 
 # 6.1 Iteration Protocol
 
@@ -52,27 +54,15 @@ iteration protocol.
 
 Example: Manual iteration over a list.
 
-```python
->>> x = [1,2,3]
->>> it = x.__iter__()
->>> it
-<listiterator object at 0x590b0>
->>> it.__next__()
-1
->>> it.__next__()
-2
->>> it.__next__()
-3
->>> it.__next__()
-Traceback (most recent call last):
-File "<stdin>", line 1, in ? StopIteration
->>>
-```
+```python >>> x = [1,2,3] >>> it = x.__iter__()  >>> it <listiterator object
+at 0x590b0> >>> it.__next__()  1 >>> it.__next__()  2 >>> it.__next__()  3
+>>> it.__next__()  Traceback (most recent call last): File "<stdin>", line
+1, in ? StopIteration >>> ```
 
 ### Supporting Iteration
 
-Knowing about iteration is useful if you want to add it to your own objects.
-For example, making a custom container.
+Knowing about iteration is useful if you want to add it to your own
+objects.  For example, making a custom container.
 
 ```python
 class Portfolio:
@@ -94,9 +84,7 @@ for s in port:
 
 Create the following list:
 
-```python
-a = [1,9,4,25,16]
-```
+```python a = [1,9,4,25,16] ```
 
 Manually iterate over this list.  Call `__iter__()` to get an iterator and
 call the `__next__()` method to obtain successive elements.
@@ -122,8 +110,8 @@ StopIteration
 >>>
 ```
 
-The `next()` built-in function is a shortcut for calling
-the `__next__()` method of an iterator. Try using it on a file:
+The `next()` built-in function is a shortcut for calling the `__next__()`
+method of an iterator. Try using it on a file:
 
 ```python
 >>> f = open('Data/portfolio.csv')
@@ -138,18 +126,16 @@ the `__next__()` method of an iterator. Try using it on a file:
 >>>
 ```
 
-Keep calling `next(f)` until you reach the end of the
-file. Watch what happens.
+Keep calling `next(f)` until you reach the end of the file. Watch what
+happens.
 
 ### Exercise 6.2: Supporting Iteration
 
 On occasion, you might want to make one of your own objects support
-iteration--especially if your object wraps around an existing
-list or other iterable.  In a new file `portfolio.py`, define the
-following class:
+iteration--especially if your object wraps around an existing list or other
+iterable.  In a new file `portfolio.py`, define the following class:
 
-```python
-# portfolio.py
+```python # portfolio.py
 
 class Portfolio:
 
@@ -168,17 +154,13 @@ class Portfolio:
         return total_shares
 ```
 
-This class is meant to be a layer around a list, but with some
-extra methods such as the `total_cost` property.  Modify the `read_portfolio()`
-function in `report.py` so that it creates a `Portfolio` instance like this:
+This class is meant to be a layer around a list, but with some extra methods
+such as the `total_cost` property.  Modify the `read_portfolio()` function
+in `report.py` so that it creates a `Portfolio` instance like this:
 
-```
-# report.py
-...
+``` # report.py ...
 
-import fileparse
-from stock import Stock
-from portfolio import Portfolio
+import fileparse from stock import Stock from portfolio import Portfolio
 
 def read_portfolio(filename):
     '''
@@ -195,19 +177,16 @@ def read_portfolio(filename):
 ...
 ```
 
-Try running the `report.py` program. You will find that it fails spectacularly due to the fact
-that `Portfolio` instances aren't iterable.
+Try running the `report.py` program. You will find that it fails
+spectacularly due to the fact that `Portfolio` instances aren't iterable.
 
-```python
->>> import report
->>> report.portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
-... crashes ...
-```
+```python >>> import report >>>
+report.portfolio_report('Data/portfolio.csv', 'Data/prices.csv')
+... crashes ...  ```
 
 Fix this by modifying the `Portfolio` class to support iteration:
 
-```python
-class Portfolio:
+```python class Portfolio:
 
     def __init__(self, holdings):
         self._holdings = holdings
@@ -230,8 +209,7 @@ class Portfolio:
 After you've made this change, your `report.py` program should work again.   While you're
 at it, fix up your `pcost.py` program to use the new `Portfolio` object. Like this:
 
-```python
-# pcost.py
+```python # pcost.py
 
 import report
 
@@ -246,18 +224,14 @@ def portfolio_cost(filename):
 
 Test it to make sure it works:
 
-```python
->>> import pcost
->>> pcost.portfolio_cost('Data/portfolio.csv')
-44671.15
->>>
-```
+```python >>> import pcost >>> pcost.portfolio_cost('Data/portfolio.csv')
+44671.15 >>> ```
 
 ### Exercise 6.3: Making a more proper container
 
 If making a container class, you often want to do more than just
-iteration. Modify the `Portfolio` class so that it has some other
-special methods like this:
+iteration. Modify the `Portfolio` class so that it has some other special
+methods like this:
 
 ```python
 class Portfolio:
@@ -290,28 +264,18 @@ class Portfolio:
 
 Now, try some experiments using this new class:
 
-```
->>> import report
->>> portfolio = report.read_portfolio('Data/portfolio.csv')
->>> len(portfolio)
-7
->>> portfolio[0]
-Stock('AA', 100, 32.2)
->>> portfolio[1]
-Stock('IBM', 50, 91.1)
->>> portfolio[0:3]
-[Stock('AA', 100, 32.2), Stock('IBM', 50, 91.1), Stock('CAT', 150, 83.44)]
->>> 'IBM' in portfolio
-True
->>> 'AAPL' in portfolio
-False
->>>
-```
+``` >>> import report >>> portfolio =
+report.read_portfolio('Data/portfolio.csv')  >>> len(portfolio)  7 >>>
+portfolio[0] Stock('AA', 100, 32.2)  >>> portfolio[1] Stock('IBM', 50, 91.1)
+>>> portfolio[0:3] [Stock('AA', 100, 32.2), Stock('IBM', 50, 91.1),
+Stock('CAT', 150, 83.44)] >>> 'IBM' in portfolio True >>> 'AAPL' in
+portfolio False >>> ```
 
 One important observation about this--generally code is considered
-"Pythonic" if it speaks the common vocabulary of how other parts of
-Python normally work.  For container objects, supporting iteration,
-indexing, containment, and other kinds of operators is an important
-part of this.
+"Pythonic" if it speaks the common vocabulary of how other parts of Python
+normally work.  For container objects, supporting iteration, indexing,
+containment, and other kinds of operators is an important part of this.
 
-[Contents](../Contents.md) \| [Previous (5.2 Encapsulation)](../05_Object_model/02_Classes_encapsulation.md) \| [Next (6.2 Customizing Iteration)](02_Customizing_iteration.md)
+[Contents](../Contents.md) \| [Previous (5.2
+Encapsulation)](../05_Object_model/02_Classes_encapsulation.md) \| [Next
+(6.2 Customizing Iteration)](02_Customizing_iteration.md)

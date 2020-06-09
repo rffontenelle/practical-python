@@ -1,4 +1,6 @@
-[Contents](../Contents.md) \| [Previous (7.4 Decorators)](04_Function_decorators.md) \| [Next (8 Testing and Debugging)](../08_Testing_debugging/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (7.4
+Decorators)](04_Function_decorators.md) \| [Next (8 Testing and
+Debugging)](../08_Testing_debugging/00_Overview.md)
 
 # 7.5 Decorated Methods
 
@@ -7,7 +9,8 @@ combination with method definitions.
 
 ### Predefined Decorators
 
-There are predefined decorators used to specify special kinds of methods in class definitions.
+There are predefined decorators used to specify special kinds of methods in
+class definitions.
 
 ```python
 class Foo:
@@ -31,9 +34,9 @@ Let's go one by one.
 
 ### Static Methods
 
-`@staticmethod` is used to define a so-called *static* class methods
-(from C++/Java).  A static method is a function that is part of the
-class, but which does *not* operate on instances.
+`@staticmethod` is used to define a so-called *static* class methods (from
+C++/Java).  A static method is a function that is part of the class, but
+which does *not* operate on instances.
 
 ```python
 class Foo(object):
@@ -41,20 +44,18 @@ class Foo(object):
     def bar(x):
         print('x =', x)
 
->>> Foo.bar(2) x=2
->>>
-```
+>>> Foo.bar(2) x=2 >>> ```
 
-Static methods are sometimes used to implement internal supporting
-code for a class.  For example, code to help manage created instances
-(memory management, system resources, persistence, locking, etc).
-They're also used by certain design patterns (not discussed here).
+Static methods are sometimes used to implement internal supporting code for
+a class.  For example, code to help manage created instances (memory
+management, system resources, persistence, locking, etc).  They're also used
+by certain design patterns (not discussed here).
 
 ### Class Methods
 
-`@classmethod` is used to define class methods.  A class method is a
-method that receives the *class* object as the first parameter instead
-of the instance.
+`@classmethod` is used to define class methods.  A class method is a method
+that receives the *class* object as the first parameter instead of the
+instance.
 
 ```python
 class Foo:
@@ -73,7 +74,8 @@ class Foo:
 >>>
 ```
 
-Class methods are most often used as a tool for defining alternate constructors.
+Class methods are most often used as a tool for defining alternate
+constructors.
 
 ```python
 class Date:
@@ -89,8 +91,7 @@ class Date:
         # And used to create a new instance
         return cls(tm.tm_year, tm.tm_mon, tm.tm_mday)
 
-d = Date.today()
-```
+d = Date.today()  ```
 
 Class methods solve some tricky problems with features like inheritance.
 
@@ -106,15 +107,15 @@ class Date:
 class NewDate(Date):
     ...
 
-d = NewDate.today()
-```
+d = NewDate.today()  ```
 
 ## Exercises
 
 ### Exercise 7.11: Class Methods in Practice
 
 In your `report.py` and `portfolio.py` files, the creation of a `Portfolio`
-object is a bit muddled.  For example, the `report.py` program has code like this:
+object is a bit muddled.  For example, the `report.py` program has code like
+this:
 
 ```python
 def read_portfolio(filename, **opts):
@@ -147,8 +148,7 @@ code is scattered.    If a `Portfolio` class is supposed to contain
 a list of `Stock` instances, maybe you should change the class to be a bit more clear.
 Like this:
 
-```python
-# portfolio.py
+```python # portfolio.py
 
 import stock
 
@@ -166,11 +166,9 @@ class Portfolio:
 If you want to read a portfolio from a CSV file, maybe you should make a
 class method for it:
 
-```python
-# portfolio.py
+```python # portfolio.py
 
-import fileparse
-import stock
+import fileparse import stock
 
 class Portfolio:
     def __init__(self):
@@ -205,7 +203,9 @@ To use this new Portfolio class, you can now write code like this:
 >>>
 ```
 
-Make these changes to the `Portfolio` class and modify the `report.py`
-code to use the class method.
+Make these changes to the `Portfolio` class and modify the `report.py` code
+to use the class method.
 
-[Contents](../Contents.md) \| [Previous (7.4 Decorators)](04_Function_decorators.md) \| [Next (8 Testing and Debugging)](../08_Testing_debugging/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (7.4
+Decorators)](04_Function_decorators.md) \| [Next (8 Testing and
+Debugging)](../08_Testing_debugging/00_Overview.md)

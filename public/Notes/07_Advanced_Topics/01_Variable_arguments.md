@@ -1,5 +1,7 @@
 
-[Contents](../Contents.md) \| [Previous (6.4 Generator Expressions)](../06_Generators/04_More_generators.md) \| [Next (7.2 Anonymous Functions)](02_Anonymous_function.md)
+[Contents](../Contents.md) \| [Previous (6.4 Generator
+Expressions)](../06_Generators/04_More_generators.md) \| [Next (7.2
+Anonymous Functions)](02_Anonymous_function.md)
 
 # 7.1 Variable Arguments
 
@@ -8,8 +10,8 @@ This section covers variadic function arguments, sometimes described as
 
 ### Positional variable arguments (*args)
 
-A function that accepts *any number* of arguments is said to use variable arguments.
-For example:
+A function that accepts *any number* of arguments is said to use variable
+arguments.  For example:
 
 ```python
 def f(x, *args):
@@ -18,9 +20,7 @@ def f(x, *args):
 
 Function call.
 
-```python
-f(1,2,3,4,5)
-```
+```python f(1,2,3,4,5)  ```
 
 The extra arguments get passed as a tuple.
 
@@ -32,8 +32,7 @@ def f(x, *args):
 
 ### Keyword variable arguments (**kwargs)
 
-A function can also accept any number of keyword arguments.
-For example:
+A function can also accept any number of keyword arguments.  For example:
 
 ```python
 def f(x, y, **kwargs):
@@ -42,9 +41,7 @@ def f(x, y, **kwargs):
 
 Function call.
 
-```python
-f(2, 3, flag=True, mode='fast', header='debug')
-```
+```python f(2, 3, flag=True, mode='fast', header='debug')  ```
 
 The extra keywords are passed in a dictionary.
 
@@ -57,7 +54,8 @@ def f(x, y, **kwargs):
 
 ### Combining both
 
-A function can also accept any number of variable keyword and non-keyword arguments.
+A function can also accept any number of variable keyword and non-keyword
+arguments.
 
 ```python
 def f(*args, **kwargs):
@@ -66,9 +64,7 @@ def f(*args, **kwargs):
 
 Function call.
 
-```python
-f(2, 3, flag=True, mode='fast', header='debug')
-```
+```python f(2, 3, flag=True, mode='fast', header='debug')  ```
 
 The arguments are separated into positional and keyword components
 
@@ -79,9 +75,9 @@ def f(*args, **kwargs):
     ...
 ```
 
-This function takes any combination of positional or keyword
-arguments.  It is sometimes used when writing wrappers or when you
-want to pass arguments through to another function.
+This function takes any combination of positional or keyword arguments.  It
+is sometimes used when writing wrappers or when you want to pass arguments
+through to another function.
 
 ### Passing Tuples and Dicts
 
@@ -114,29 +110,18 @@ Try defining the following function:
 >>> def avg(x,*more):
         return float(x+sum(more))/(1+len(more))
 
->>> avg(10,11)
-10.5
->>> avg(3,4,5)
-4.0
->>> avg(1,2,3,4,5,6)
-3.5
->>>
-```
+>>> avg(10,11)  10.5 >>> avg(3,4,5)  4.0 >>> avg(1,2,3,4,5,6)  3.5 >>> ```
 
 Notice how the parameter `*more` collects all of the extra arguments.
 
 ### Exercise 7.2: Passing tuple and dicts as arguments
 
-Suppose you read some data from a file and obtained a tuple such as
-this:
+Suppose you read some data from a file and obtained a tuple such as this:
 
-```
->>> data = ('GOOG', 100, 490.1)
->>>
-```
+``` >>> data = ('GOOG', 100, 490.1)  >>> ```
 
-Now, suppose you wanted to create a `Stock` object from this
-data.  If you try to pass `data` directly, it doesn't work:
+Now, suppose you wanted to create a `Stock` object from this data.  If you
+try to pass `data` directly, it doesn't work:
 
 ```
 >>> from stock import Stock
@@ -149,26 +134,17 @@ TypeError: __init__() takes exactly 4 arguments (2 given)
 
 This is easily fixed using `*data` instead.  Try this:
 
-```python
->>> s = Stock(*data)
->>> s
-Stock('GOOG', 100, 490.1)
->>>
-```
+```python >>> s = Stock(*data)  >>> s Stock('GOOG', 100, 490.1)  >>> ```
 
 If you have a dictionary, you can use `**` instead. For example:
 
-```python
->>> data = { 'name': 'GOOG', 'shares': 100, 'price': 490.1 }
->>> s = Stock(**data)
-Stock('GOOG', 100, 490.1)
->>>
-```
+```python >>> data = { 'name': 'GOOG', 'shares': 100, 'price': 490.1 } >>> s
+= Stock(**data)  Stock('GOOG', 100, 490.1)  >>> ```
 
 ### Exercise 7.3: Creating a list of instances
 
-In your `report.py` program, you created a list of instances
-using code like this:
+In your `report.py` program, you created a list of instances using code like
+this:
 
 ```python
 def read_portfolio(filename):
@@ -212,22 +188,17 @@ def read_portfolio(filename, **opts):
 
 Once you've made the change, trying reading a file with some errors:
 
-```python
->>> import report
->>> port = report.read_portfolio('Data/missing.csv')
-Row 4: Couldn't convert ['MSFT', '', '51.23']
-Row 4: Reason invalid literal for int() with base 10: ''
-Row 7: Couldn't convert ['IBM', '', '70.44']
-Row 7: Reason invalid literal for int() with base 10: ''
->>>
-```
+```python >>> import report >>> port =
+report.read_portfolio('Data/missing.csv')  Row 4: Couldn't convert ['MSFT',
+'', '51.23'] Row 4: Reason invalid literal for int() with base 10: '' Row 7:
+Couldn't convert ['IBM', '', '70.44'] Row 7: Reason invalid literal for
+int() with base 10: '' >>> ```
 
 Now, try silencing the errors:
 
-```python
->>> import report
->>> port = report.read_portfolio('Data/missing.csv', silence_errors=True)
->>>
-```
+```python >>> import report >>> port =
+report.read_portfolio('Data/missing.csv', silence_errors=True)  >>> ```
 
-[Contents](../Contents.md) \| [Previous (6.4 Generator Expressions)](../06_Generators/04_More_generators.md) \| [Next (7.2 Anonymous Functions)](02_Anonymous_function.md)
+[Contents](../Contents.md) \| [Previous (6.4 Generator
+Expressions)](../06_Generators/04_More_generators.md) \| [Next (7.2
+Anonymous Functions)](02_Anonymous_function.md)

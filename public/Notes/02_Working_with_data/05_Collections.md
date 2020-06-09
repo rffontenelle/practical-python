@@ -1,9 +1,10 @@
-[Contents](../Contents.md) \| [Previous (2.4 Sequences)](04_Sequences.md) \| [Next (2.6 List Comprehensions)](06_List_comprehension.md)
+[Contents](../Contents.md) \| [Previous (2.4 Sequences)](04_Sequences.md) \|
+[Next (2.6 List Comprehensions)](06_List_comprehension.md)
 
 # 2.5 collections module
 
-The `collections` module provides a number of useful objects for data handling.
-This part briefly introduces some of these features.
+The `collections` module provides a number of useful objects for data
+handling.  This part briefly introduces some of these features.
 
 ### Example: Counting Things
 
@@ -20,7 +21,8 @@ portfolio = [
 ]
 ```
 
-There are two `IBM` entries and two `GOOG` entries in this list. The shares need to be combined together somehow.
+There are two `IBM` entries and two `GOOG` entries in this list. The shares
+need to be combined together somehow.
 
 ### Counters
 
@@ -50,7 +52,8 @@ portfolio = [
 ]
 ```
 
-Like in the previous example, the key `IBM` should have two different tuples instead.
+Like in the previous example, the key `IBM` should have two different tuples
+instead.
 
 Solution: Use a `defaultdict`.
 
@@ -62,15 +65,14 @@ for name, shares, price in portfolio:
 holdings['IBM'] # [ (50, 91.1), (100, 45.23) ]
 ```
 
-The `defaultdict` ensures that every time you access a key you get a default value.
+The `defaultdict` ensures that every time you access a key you get a default
+value.
 
 ### Example: Keeping a History
 
-Problem: We want a history of the last N things.
-Solution: Use a `deque`.
+Problem: We want a history of the last N things.  Solution: Use a `deque`.
 
-```python
-from collections import deque
+```python from collections import deque
 
 history = deque(maxlen=N)
 with open(filename) as f:
@@ -81,17 +83,15 @@ with open(filename) as f:
 
 ## Exercises
 
-The `collections` module might be one of the most useful library
-modules for dealing with special purpose kinds of data handling
-problems such as tabulating and indexing.
+The `collections` module might be one of the most useful library modules for
+dealing with special purpose kinds of data handling problems such as
+tabulating and indexing.
 
-In this exercise, we’ll look at a few simple examples.  Start by
-running your `report.py` program so that you have the portfolio of
-stocks loaded in the interactive mode.
+In this exercise, weâll look at a few simple examples.  Start by running
+your `report.py` program so that you have the portfolio of stocks loaded in
+the interactive mode.
 
-```bash
-bash % python3 -i report.py
-```
+```bash bash % python3 -i report.py ```
 
 ### Exercise 2.18: Tabulating with Counters
 
@@ -105,33 +105,22 @@ This is easy using `Counter` objects. Try it:
 >>> for s in portfolio:
         holdings[s['name']] += s['shares']
 
->>> holdings
-Counter({'MSFT': 250, 'IBM': 150, 'CAT': 150, 'AA': 100, 'GE': 95})
->>>
-```
+>>> holdings Counter({'MSFT': 250, 'IBM': 150, 'CAT': 150, 'AA': 100, 'GE':
+95})  >>> ```
 
-Carefully observe how the multiple entries for `MSFT` and `IBM` in `portfolio` get combined into a single entry here.
+Carefully observe how the multiple entries for `MSFT` and `IBM` in
+`portfolio` get combined into a single entry here.
 
 You can use a Counter just like a dictionary to retrieve individual values:
 
-```python
->>> holdings['IBM']
-150
->>> holdings['MSFT']
-250
->>>
-```
+```python >>> holdings['IBM'] 150 >>> holdings['MSFT'] 250 >>> ```
 
 If you want to rank the values, do this:
 
-```python
->>> # Get three most held stocks
->>> holdings.most_common(3)
-[('MSFT', 250), ('IBM', 150), ('CAT', 150)]
->>>
-```
+```python >>> # Get three most held stocks >>> holdings.most_common(3)
+[('MSFT', 250), ('IBM', 150), ('CAT', 150)] >>> ```
 
-Let’s grab another portfolio of stocks and make a new Counter:
+Letâs grab another portfolio of stocks and make a new Counter:
 
 ```python
 >>> portfolio2 = read_portfolio('Data/portfolio2.csv')
@@ -139,33 +128,26 @@ Let’s grab another portfolio of stocks and make a new Counter:
 >>> for s in portfolio2:
           holdings2[s['name']] += s['shares']
 
->>> holdings2
-Counter({'HPQ': 250, 'GE': 125, 'AA': 50, 'MSFT': 25})
->>>
+>>> holdings2 Counter({'HPQ': 250, 'GE': 125, 'AA': 50, 'MSFT': 25})  >>>
 ```
 
-Finally, let’s combine all of the holdings doing one simple operation:
+Finally, letâs combine all of the holdings doing one simple operation:
 
-```python
->>> holdings
-Counter({'MSFT': 250, 'IBM': 150, 'CAT': 150, 'AA': 100, 'GE': 95})
->>> holdings2
-Counter({'HPQ': 250, 'GE': 125, 'AA': 50, 'MSFT': 25})
->>> combined = holdings + holdings2
->>> combined
-Counter({'MSFT': 275, 'HPQ': 250, 'GE': 220, 'AA': 150, 'IBM': 150, 'CAT': 150})
->>>
-```
+```python >>> holdings Counter({'MSFT': 250, 'IBM': 150, 'CAT': 150, 'AA':
+100, 'GE': 95})  >>> holdings2 Counter({'HPQ': 250, 'GE': 125, 'AA': 50,
+'MSFT': 25})  >>> combined = holdings + holdings2 >>> combined
+Counter({'MSFT': 275, 'HPQ': 250, 'GE': 220, 'AA': 150, 'IBM': 150, 'CAT':
+150})  >>> ```
 
-This is only a small taste of what counters provide. However, if you
-ever find yourself needing to tabulate values, you should consider
-using one.
+This is only a small taste of what counters provide. However, if you ever
+find yourself needing to tabulate values, you should consider using one.
 
 ### Commentary: collections module
 
-The `collections` module is one of the most useful library modules
-in all of Python.  In fact, we could do an extended tutorial on just
-that.  However, doing so now would also be a distraction.  For now,
-put `collections` on your list of bedtime reading for later.
+The `collections` module is one of the most useful library modules in all of
+Python.  In fact, we could do an extended tutorial on just that.  However,
+doing so now would also be a distraction.  For now, put `collections` on
+your list of bedtime reading for later.
 
-[Contents](../Contents.md) \| [Previous (2.4 Sequences)](04_Sequences.md) \| [Next (2.6 List Comprehensions)](06_List_comprehension.md)
+[Contents](../Contents.md) \| [Previous (2.4 Sequences)](04_Sequences.md) \|
+[Next (2.6 List Comprehensions)](06_List_comprehension.md)

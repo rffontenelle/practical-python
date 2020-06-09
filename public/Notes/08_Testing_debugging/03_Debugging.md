@@ -1,4 +1,5 @@
-[Contents](../Contents.md) \| [Previous (8.2 Logging)](02_Logging.md) \| [Next (9 Packages)](../09_Packages/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (8.2 Logging)](02_Logging.md) \|
+[Next (9 Packages)](../09_Packages/00_Overview.md)
 
 # 8.3 Debugging
 
@@ -64,8 +65,8 @@ AttributeError: 'int' object has no attribute 'append'
 >>>
 ```
 
-It preserves the interpreter state. That means that you can go poking
-around after the crash. Checking variable values and other state.
+It preserves the interpreter state. That means that you can go poking around
+after the crash. Checking variable values and other state.
 
 ### Debugging with Print
 
@@ -79,19 +80,12 @@ def spam(x):
     ...
 ```
 
-`repr()` shows you an accurate representation of a value. Not the *nice* printing output.
+`repr()` shows you an accurate representation of a value. Not the *nice*
+printing output.
 
-```python
->>> from decimal import Decimal
->>> x = Decimal('3.4')
-# NO `repr`
->>> print(x)
-3.4
-# WITH `repr`
->>> print(repr(x))
-Decimal('3.4')
->>>
-```
+```python >>> from decimal import Decimal >>> x = Decimal('3.4')  # NO
+`repr` >>> print(x)  3.4 # WITH `repr` >>> print(repr(x))  Decimal('3.4')
+>>> ```
 
 ### The Python Debugger
 
@@ -120,13 +114,10 @@ pdb.set_trace()       # Instead of `breakpoint()`
 
 You can also run an entire program under debugger.
 
-```bash
-bash % python3 -m pdb someprogram.py
-```
+```bash bash % python3 -m pdb someprogram.py ```
 
 It will automatically enter the debugger before the first
-statement. Allowing you to set breakpoints and change the
-configuration.
+statement. Allowing you to set breakpoints and change the configuration.
 
 Common debugger commands:
 
@@ -154,8 +145,9 @@ For breakpoints location is one of the following.
 
 ## Exercises
 
-### Exercise 8.4:  Bugs? What Bugs?
+### Exercise 8.4: Bugs? What Bugs?
 
 It runs. Ship it!
 
-[Contents](../Contents.md) \| [Previous (8.2 Logging)](02_Logging.md) \| [Next (9 Packages)](../09_Packages/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (8.2 Logging)](02_Logging.md) \|
+[Next (9 Packages)](../09_Packages/00_Overview.md)

@@ -1,16 +1,18 @@
-[Contents](../Contents.md) \| [Previous (4.2 Inheritance)](02_Inheritance.md) \| [Next (4.4 Exceptions)](04_Defining_exceptions.md)
+[Contents](../Contents.md) \| [Previous (4.2
+Inheritance)](02_Inheritance.md) \| [Next (4.4
+Exceptions)](04_Defining_exceptions.md)
 
 # 4.3 Special Methods
 
-Various parts of Python's behavior can be customized via special or so-called "magic" methods.
-This section introduces that idea.  In addition dynamic attribute access and bound methods
-are discussed.
+Various parts of Python's behavior can be customized via special or
+so-called "magic" methods.  This section introduces that idea.  In addition
+dynamic attribute access and bound methods are discussed.
 
 ### Introduction
 
-Classes may define special methods. These have special meaning to the
-Python interpreter.  They are always preceded and followed by
-`__`. For example `__init__`.
+Classes may define special methods. These have special meaning to the Python
+interpreter.  They are always preceded and followed by `__`. For example
+`__init__`.
 
 ```python
 class Stock(object):
@@ -20,41 +22,27 @@ class Stock(object):
         ...
 ```
 
-There are dozens of special methods, but we will only look at a few specific examples.
+There are dozens of special methods, but we will only look at a few specific
+examples.
 
 ### Special methods for String Conversions
 
 Objects have two string representations.
 
-```python
->>> from datetime import date
->>> d = date(2012, 12, 21)
->>> print(d)
-2012-12-21
->>> d
-datetime.date(2012, 12, 21)
->>>
-```
+```python >>> from datetime import date >>> d = date(2012, 12, 21)  >>>
+print(d)  2012-12-21 >>> d datetime.date(2012, 12, 21)  >>> ```
 
 The `str()` function is used to create a nice printable output:
 
-```python
->>> str(d)
-'2012-12-21'
->>>
-```
+```python >>> str(d)  '2012-12-21' >>> ```
 
-The `repr()` function is used to create a more detailed representation
-for programmers.
+The `repr()` function is used to create a more detailed representation for
+programmers.
 
-```python
->>> repr(d)
-'datetime.date(2012, 12, 21)'
->>>
-```
+```python >>> repr(d)  'datetime.date(2012, 12, 21)' >>> ```
 
-Those functions, `str()` and `repr()`, use a pair of special methods
-in the class to produce the string to be displayed.
+Those functions, `str()` and `repr()`, use a pair of special methods in the
+class to produce the string to be displayed.
 
 ```python
 class Date(object):
@@ -143,21 +131,15 @@ Invoking a method is a two-step process.
 
 ### Bound Methods
 
-A method that has not yet been invoked by the function call operator `()` is known as a *bound method*.
-It operates on the instance where it originated.
+A method that has not yet been invoked by the function call operator `()` is
+known as a *bound method*.  It operates on the instance where it originated.
 
-```python
->>> s = Stock('GOOG', 100, 490.10) >>> s
-<Stock object at 0x590d0>
->>> c = s.cost
->>> c
-<bound method Stock.cost of <Stock object at 0x590d0>>
->>> c()
-49010.0
->>>
-```
+```python >>> s = Stock('GOOG', 100, 490.10) >>> s <Stock object at 0x590d0>
+>>> c = s.cost >>> c <bound method Stock.cost of <Stock object at 0x590d0>>
+>>> c()  49010.0 >>> ```
 
-Bound methods are often a source of careless non-obvious errors. For example:
+Bound methods are often a source of careless non-obvious errors. For
+example:
 
 ```python
 >>> s = Stock('GOOG', 100, 490.10)
@@ -201,40 +183,29 @@ else:
 
 *Note: `getattr()` also has a useful default value *arg*.
 
-```python
-x = getattr(obj, 'x', None)
-```
+```python x = getattr(obj, 'x', None)  ```
 
 ## Exercises
 
 ### Exercise 4.9: Better output for printing objects
 
-Modify the `Stock` object that you defined in `stock.py`
-so that the `__repr__()` method produces more useful output.  For
-example:
+Modify the `Stock` object that you defined in `stock.py` so that the
+`__repr__()` method produces more useful output.  For example:
 
-```python
->>> goog = Stock('GOOG', 100, 490.1)
->>> goog
-Stock('GOOG', 100, 490.1)
->>>
-```
+```python >>> goog = Stock('GOOG', 100, 490.1)  >>> goog Stock('GOOG', 100,
+490.1)  >>> ```
 
-See what happens when you read a portfolio of stocks and view the
-resulting list after you have made these changes.  For example:
+See what happens when you read a portfolio of stocks and view the resulting
+list after you have made these changes.  For example:
 
-```
->>> import report
->>> portfolio = report.read_portfolio('Data/portfolio.csv')
->>> portfolio
-... see what the output is ...
->>>
-```
+``` >>> import report >>> portfolio =
+report.read_portfolio('Data/portfolio.csv')  >>> portfolio ... see what the
+output is ...  >>> ```
 
 ### Exercise 4.10: An example of using getattr()
 
-`getattr()` is an alternative mechanism for reading attributes.  It can be used to
-write extremely flexible code.  To begin, try this example:
+`getattr()` is an alternative mechanism for reading attributes.  It can be
+used to write extremely flexible code.  To begin, try this example:
 
 ```python
 >>> import stock
@@ -243,20 +214,17 @@ write extremely flexible code.  To begin, try this example:
 >>> for colname in columns:
         print(colname, '=', getattr(s, colname))
 
-name = GOOG
-shares = 100
->>>
-```
+name = GOOG shares = 100 >>> ```
 
-Carefully observe that the output data is determined entirely by the attribute
-names listed in the `columns` variable.
+Carefully observe that the output data is determined entirely by the
+attribute names listed in the `columns` variable.
 
-In the file `tableformat.py`, take this idea and expand it into a generalized
-function `print_table()` that prints a table showing
+In the file `tableformat.py`, take this idea and expand it into a
+generalized function `print_table()` that prints a table showing
 user-specified attributes of a list of arbitrary objects.  As with the
-earlier `print_report()` function, `print_table()` should also accept
-a `TableFormatter` instance to control the output format.  Here's how
-it should work:
+earlier `print_report()` function, `print_table()` should also accept a
+`TableFormatter` instance to control the output format.  Here's how it
+should work:
 
 ```python
 >>> import report
@@ -287,5 +255,7 @@ it should work:
 >>>
 ```
 
-[Contents](../Contents.md) \| [Previous (4.2 Inheritance)](02_Inheritance.md) \| [Next (4.4 Exceptions)](04_Defining_exceptions.md)
+[Contents](../Contents.md) \| [Previous (4.2
+Inheritance)](02_Inheritance.md) \| [Next (4.4
+Exceptions)](04_Defining_exceptions.md)
 

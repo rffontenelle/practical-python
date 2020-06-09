@@ -1,9 +1,11 @@
-[Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (6.3
+Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced
+Topics)](../07_Advanced_Topics/00_Overview.md)
 
 # 6.4 More Generators
 
-This section introduces a few additional generator related topics
-including generator expressions and the itertools module.
+This section introduces a few additional generator related topics including
+generator expressions and the itertools module.
 
 ### Generator Expressions
 
@@ -29,15 +31,11 @@ Differences with List Comprehensions.
 
 General syntax.
 
-```python
-(<expression> for i in s if <conditional>)
-```
+```python (<expression> for i in s if <conditional>)  ```
 
 It can also serve as a function argument.
 
-```python
-sum(x*x for x in a)
-```
+```python sum(x*x for x in a)  ```
 
 It can be applied to any iterable.
 
@@ -53,8 +51,8 @@ It can be applied to any iterable.
 ```
 
 The main use of generator expressions is in code that performs some
-calculation on a sequence, but only uses the result once.  For
-example, strip all comments from a file.
+calculation on a sequence, but only uses the result once.  For example,
+strip all comments from a file.
 
 ```python
 f = open('somefile.txt')
@@ -64,8 +62,8 @@ for line in lines:
 f.close()
 ```
 
-With generators, the code runs faster and uses little memory. It's
-like a filter applied to a stream.
+With generators, the code runs faster and uses little memory. It's like a
+filter applied to a stream.
 
 ### Why Generators
 
@@ -82,35 +80,32 @@ like a filter applied to a stream.
 
 ### `itertools` module
 
-The `itertools` is a library module with various functions designed to help with iterators/generators.
+The `itertools` is a library module with various functions designed to help
+with iterators/generators.
 
-```python
-itertools.chain(s1,s2)
-itertools.count(n)
-itertools.cycle(s)
-itertools.dropwhile(predicate, s)
-itertools.groupby(s)
-itertools.ifilter(predicate, s)
-itertools.imap(function, s1, ... sN)
-itertools.repeat(s, n)
-itertools.tee(s, ncopies)
-itertools.izip(s1, ... , sN)
-```
+```python itertools.chain(s1,s2)  itertools.count(n)  itertools.cycle(s)
+itertools.dropwhile(predicate, s)  itertools.groupby(s)
+itertools.ifilter(predicate, s)  itertools.imap(function, s1, ... sN)
+itertools.repeat(s, n)  itertools.tee(s, ncopies)  itertools.izip(s1, ... ,
+sN)  ```
 
-All functions process data iteratively.
-They implement various kinds of iteration patterns.
+All functions process data iteratively.  They implement various kinds of
+iteration patterns.
 
-More information at [Generator Tricks for Systems Programmers](http://www.dabeaz.com/generators/) tutorial from PyCon '08.
+More information at [Generator Tricks for Systems
+Programmers](http://www.dabeaz.com/generators/) tutorial from PyCon '08.
 
 ## Exercises
 
-In the previous exercises, you wrote some code that followed lines being written to a log file and parsed them into a sequence of rows.
-This exercise continues to build upon that.  Make sure the `Data/stocksim.py` is still running.
+In the previous exercises, you wrote some code that followed lines being
+written to a log file and parsed them into a sequence of rows.  This
+exercise continues to build upon that.  Make sure the `Data/stocksim.py` is
+still running.
 
 ### Exercise 6.13: Generator Expressions
 
-Generator expressions are a generator version of a list comprehension.
-For example:
+Generator expressions are a generator version of a list comprehension.  For
+example:
 
 ```python
 >>> nums = [1, 2, 3, 4, 5]
@@ -127,8 +122,8 @@ For example:
 25
 ```
 
-Unlike a list a comprehension, a generator expression can only be used once.
-Thus, if you try another for-loop, you get nothing:
+Unlike a list a comprehension, a generator expression can only be used
+once.  Thus, if you try another for-loop, you get nothing:
 
 ```python
 >>> for n in squares:
@@ -139,8 +134,8 @@ Thus, if you try another for-loop, you get nothing:
 
 ### Exercise 6.14: Generator Expressions in Function Arguments
 
-Generator expressions are sometimes placed into function arguments.
-It looks a little weird at first, but try this experiment:
+Generator expressions are sometimes placed into function arguments.  It
+looks a little weird at first, but try this experiment:
 
 ```python
 >>> nums = [1,2,3,4,5]
@@ -153,15 +148,13 @@ It looks a little weird at first, but try this experiment:
 In the above example, the second version using generators would
 use significantly less memory if a large list was being manipulated.
 
-In your `portfolio.py` file, you performed a few calculations
-involving list comprehensions.  Try replacing these with
-generator expressions.
+In your `portfolio.py` file, you performed a few calculations involving list
+comprehensions.  Try replacing these with generator expressions.
 
 ### Exercise 6.15: Code simplification
 
-Generators expressions are often a useful replacement for
-small generator functions.  For example, instead of writing a
-function like this:
+Generators expressions are often a useful replacement for small generator
+functions.  For example, instead of writing a function like this:
 
 ```python
 def filter_symbols(rows, names):
@@ -172,12 +165,11 @@ def filter_symbols(rows, names):
 
 You could write something like this:
 
-```python
-rows = (row for row in rows if row['name'] in names)
-```
+```python rows = (row for row in rows if row['name'] in names)  ```
 
-Modify the `ticker.py` program to use generator expressions
-as appropriate.
+Modify the `ticker.py` program to use generator expressions as appropriate.
 
 
-[Contents](../Contents.md) \| [Previous (6.3 Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced Topics)](../07_Advanced_Topics/00_Overview.md)
+[Contents](../Contents.md) \| [Previous (6.3
+Producer/Consumer)](03_Producers_consumers.md) \| [Next (7 Advanced
+Topics)](../07_Advanced_Topics/00_Overview.md)

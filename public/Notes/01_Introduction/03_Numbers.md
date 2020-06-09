@@ -1,4 +1,5 @@
-[Contents](../Contents.md) \| [Previous (1.2 A First Program)](02_Hello_world.md) \| [Next (1.4 Strings)](04_Strings.md)
+[Contents](../Contents.md) \| [Previous (1.2 A First
+Program)](02_Hello_world.md) \| [Next (1.4 Strings)](04_Strings.md)
 
 # 1.3 Numbers
 
@@ -17,10 +18,7 @@ Python has 4 types of numbers:
 
 Booleans have two values: `True`, `False`.
 
-```python
-a = True
-b = False
-```
+```python a = True b = False ```
 
 Numerically, they're evaluated as integers with value `1`, `0`.
 
@@ -68,30 +66,21 @@ abs(x)     Absolute value
 
 Use a decimal or exponential notation to specify a floating point value:
 
-```python
-a = 37.45
-b = 4e5 # 4 x 10**5 or 400,000
-c = -1.345e-10
-```
+```python a = 37.45 b = 4e5 # 4 x 10**5 or 400,000 c = -1.345e-10 ```
 
-Floats are represented as double precision using the native CPU representation [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754).
-This is the same as the `double` type in the programming language C.
+Floats are represented as double precision using the native CPU
+representation [IEEE 754](https://en.wikipedia.org/wiki/IEEE_754).  This is
+the same as the `double` type in the programming language C.
 
-> 17 digits or precision
-> Exponent from -308 to 308
+> 17 digits or precision > Exponent from -308 to 308
 
 Be aware that floating point numbers are inexact when representing decimals.
 
-```python
->>> a = 2.1 + 4.2
->>> a == 6.3
-False
->>> a
-6.300000000000001
->>>
+```python >>> a = 2.1 + 4.2 >>> a == 6.3 False >>> a 6.300000000000001 >>>
 ```
 
-This is **not a Python issue**, but the underlying floating point hardware on the CPU.
+This is **not a Python issue**, but the underlying floating point hardware
+on the CPU.
 
 Common Operations:
 
@@ -106,17 +95,11 @@ x ** y     Power
 abs(x)     Absolute Value
 ```
 
-These are the same operators as Integers, except for the bit-wise operators.
-Additional math functions are found in the `math` module.
+These are the same operators as Integers, except for the bit-wise
+operators.  Additional math functions are found in the `math` module.
 
-```python
-import math
-a = math.sqrt(x)
-b = math.sin(x)
-c = math.cos(x)
-d = math.tan(x)
-e = math.log(x)
-```
+```python import math a = math.sqrt(x)  b = math.sin(x)  c = math.cos(x)  d
+= math.tan(x)  e = math.log(x)  ```
 
 
 ### Comparisons
@@ -157,112 +140,84 @@ b = float(x)  # Convert x to float
 
 Try it out.
 
-```python
->>> a = 3.14159
->>> int(a)
-3
->>> b = '3.14159' # It also works with strings containing numbers
->>> float(b)
-3.14159
->>>
-```
+```python >>> a = 3.14159 >>> int(a)  3 >>> b = '3.14159' # It also works
+with strings containing numbers >>> float(b)  3.14159 >>> ```
 
 ## Exercises
 
-Reminder: These exercises assume you are working in the `practical-python/Work` directory. Look
-for the file `mortgage.py`.
+Reminder: These exercises assume you are working in the
+`practical-python/Work` directory. Look for the file `mortgage.py`.
 
 ### Exercise 1.7: Dave's mortgage
 
-Dave has decided to take out a 30-year fixed rate mortgage of $500,000
-with Guido’s Mortgage, Stock Investment, and Bitcoin trading
-corporation.  The interest rate is 5% and the monthly payment is
-$2684.11.
+Dave has decided to take out a 30-year fixed rate mortgage of $500,000 with
+Guidoâs Mortgage, Stock Investment, and Bitcoin trading corporation.  The
+interest rate is 5% and the monthly payment is $2684.11.
 
-Here is a program that calculates the total amount that Dave will have
-to pay over the life of the mortgage:
+Here is a program that calculates the total amount that Dave will have to
+pay over the life of the mortgage:
 
-```python
-# mortgage.py
+```python # mortgage.py
 
-principal = 500000.0
-rate = 0.05
-payment = 2684.11
-total_paid = 0.0
+principal = 500000.0 rate = 0.05 payment = 2684.11 total_paid = 0.0
 
 while principal > 0:
     principal = principal * (1+rate/12) - payment
     total_paid = total_paid + payment
 
-print('Total paid', total_paid)
-```
+print('Total paid', total_paid)  ```
 
 Enter this program and run it. You should get an answer of `966,279.6`.
 
 ### Exercise 1.8: Extra payments
 
-Suppose Dave pays an extra $1000/month for the first 12 months of the mortgage?
+Suppose Dave pays an extra $1000/month for the first 12 months of the
+mortgage?
 
-Modify the program to incorporate this extra payment and have it print the total amount paid along with the number of months required.
+Modify the program to incorporate this extra payment and have it print the
+total amount paid along with the number of months required.
 
-When you run the new program, it should report a total payment of `929,965.62` over 342 months.
+When you run the new program, it should report a total payment of
+`929,965.62` over 342 months.
 
 ### Exercise 1.9: Making an Extra Payment Calculator
 
-Modify the program so that extra payment information can be more generally handled.
-Make it so that the user can set these variables:
+Modify the program so that extra payment information can be more generally
+handled.  Make it so that the user can set these variables:
 
-```python
-extra_payment_start_month = 60
-extra_payment_end_month = 108
-extra_payment = 1000
-```
+```python extra_payment_start_month = 60 extra_payment_end_month = 108
+extra_payment = 1000 ```
 
-Make the program look at these variables and calculate the total paid appropriately.
+Make the program look at these variables and calculate the total paid
+appropriately.
 
-How much will Dave pay if he pays an extra $1000/month for 4 years starting in year 5 of the mortgage?
+How much will Dave pay if he pays an extra $1000/month for 4 years starting
+in year 5 of the mortgage?
 
 ### Exercise 1.10: Making a table
 
-Modify the program to print out a table showing the month, total paid so far, and the remaining principal.
-The output should look something like this:
+Modify the program to print out a table showing the month, total paid so
+far, and the remaining principal.  The output should look something like
+this:
 
-```bash
-1 2684.11 499399.22
-2 5368.22 498795.94
-3 8052.33 498190.15
-4 10736.44 497581.83
-5 13420.55 496970.98
-...
-308 874705.88 2971.43
-309 877389.99 299.7
-310 880074.1 -2383.16
-Total paid 880074.1
-Months 310
-```
+```bash 1 2684.11 499399.22 2 5368.22 498795.94 3 8052.33 498190.15 4
+10736.44 497581.83 5 13420.55 496970.98 ...  308 874705.88 2971.43 309
+877389.99 299.7 310 880074.1 -2383.16 Total paid 880074.1 Months 310 ```
 
 ### Exercise 1.11: Bonus
 
-While you’re at it, fix the program to correct for the overpayment that occurs in the last month.
+While youâre at it, fix the program to correct for the overpayment that
+occurs in the last month.
 
 ### Exercise 1.12: A Mystery
 
 `int()` and `float()` can be used to convert numbers.  For example,
 
-```python
->>> int("123")
-123
->>> float("1.23")
-1.23
->>>
-```
+```python >>> int("123")  123 >>> float("1.23")  1.23 >>> ```
 
 With that in mind, can you explain this behavior?
 
-```python
->>> bool("False")
-True
->>>
-```
+```python >>> bool("False")  True >>> ```
 
-[Contents](../Contents.md) \| [Previous (1.2 A First Program)](02_Hello_world.md) \| [Next (1.4 Strings)](04_Strings.md)
+[Contents](../Contents.md) \| [Previous (1.2 A First
+Program)](02_Hello_world.md) \| [Next (1.4 Strings)](04_Strings.md)

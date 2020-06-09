@@ -1,8 +1,11 @@
-[Contents](../Contents.md) \| [Previous (7.2 Anonymous Functions)](02_Anonymous_function.md) \| [Next (7.4 Decorators)](04_Function_decorators.md)
+[Contents](../Contents.md) \| [Previous (7.2 Anonymous
+Functions)](02_Anonymous_function.md) \| [Next (7.4
+Decorators)](04_Function_decorators.md)
 
 # 7.3 Returning Functions
 
-This section introduces the idea of using functions to create other functions.
+This section introduces the idea of using functions to create other
+functions.
 
 ### Introduction
 
@@ -18,14 +21,8 @@ def add(x, y):
 
 This is a function that returns another function.
 
-```python
->>> a = add(3,4)
->>> a
-<function do_add at 0x6a670>
->>> a()
-Adding 3 4
-7
-```
+```python >>> a = add(3,4)  >>> a <function do_add at 0x6a670> >>> a()
+Adding 3 4 7 ```
 
 ### Local Variables
 
@@ -41,8 +38,8 @@ def add(x, y):
     return do_add
 ```
 
-Further observe that those variables are somehow kept alive after
-`add()` has finished.
+Further observe that those variables are somehow kept alive after `add()`
+has finished.
 
 ```python
 >>> a = add(3,4)
@@ -55,7 +52,8 @@ Adding 3 4      # Where are these values coming from?
 
 ### Closures
 
-When an inner function is returned as a result, that inner function is known as a *closure*.
+When an inner function is returned as a result, that inner function is known
+as a *closure*.
 
 ```python
 def add(x, y):
@@ -73,8 +71,8 @@ of variables that it depends on.
 
 ### Using Closures
 
-Closure are an essential feature of Python. However, their use if often subtle.
-Common applications:
+Closure are an essential feature of Python. However, their use if often
+subtle.  Common applications:
 
 * Use in callback functions.
 * Delayed evaluation.
@@ -96,8 +94,7 @@ Usage example:
 def greeting():
     print('Hello Guido')
 
-after(30, greeting)
-```
+after(30, greeting)  ```
 
 `after` executes the supplied function... later.
 
@@ -113,21 +110,19 @@ def after(seconds, func):
     time.sleep(seconds)
     func()
 
-after(30, add(2, 3))
-# `do_add` has the references x -> 2 and y -> 3
-```
+after(30, add(2, 3))  # `do_add` has the references x -> 2 and y -> 3 ```
 
 ### Code Repetition
 
-Closures can also be used as technique for avoiding excessive code repetition.
-You can write functions that make code.
+Closures can also be used as technique for avoiding excessive code
+repetition.  You can write functions that make code.
 
 ## Exercises
 
 ### Exercise 7.7: Using Closures to Avoid Repetition
 
-One of the more powerful features of closures is their use in
-generating repetitive code.  If you refer back to [Exercise
+One of the more powerful features of closures is their use in generating
+repetitive code.  If you refer back to [Exercise
 5.7](../05_Object_model/02_Classes_encapsulation), recall the code for
 defining a property with type checking.
 
@@ -153,11 +148,9 @@ class Stock:
 Instead of repeatedly typing that code over and over again, you can
 automatically create it using a closure.
 
-Make a file `typedproperty.py` and put the following code in
-it:
+Make a file `typedproperty.py` and put the following code in it:
 
-```python
-# typedproperty.py
+```python # typedproperty.py
 
 def typedproperty(name, expected_type):
     private_name = '_' + name
@@ -176,8 +169,7 @@ def typedproperty(name, expected_type):
 
 Now, try it out by defining a class like this:
 
-```python
-from typedproperty import typedproperty
+```python from typedproperty import typedproperty
 
 class Stock:
     name = typedproperty('name', str)
@@ -192,27 +184,19 @@ class Stock:
 
 Try creating an instance and verifying that type-checking works.
 
-```python
->>> s = Stock('IBM', 50, 91.1)
->>> s.name
-'IBM'
->>> s.shares = '100'
-... should get a TypeError ...
->>>
-```
+```python >>> s = Stock('IBM', 50, 91.1)  >>> s.name 'IBM' >>> s.shares =
+'100' ... should get a TypeError ...  >>> ```
 
 ### Exercise 7.8: Simplifying Function Calls
 
 In the above example, users might find calls such as
-`typedproperty('shares', int)` a bit verbose to type--especially if
-they're repeated a lot.  Add the following definitions to the
-`typedproperty.py` file:
+`typedproperty('shares', int)` a bit verbose to type--especially if they're
+repeated a lot.  Add the following definitions to the `typedproperty.py`
+file:
 
-```python
-String = lambda name: typedproperty(name, str)
-Integer = lambda name: typedproperty(name, int)
-Float = lambda name: typedproperty(name, float)
-```
+```python String = lambda name: typedproperty(name, str)  Integer = lambda
+name: typedproperty(name, int)  Float = lambda name: typedproperty(name,
+float)  ```
 
 Now, rewrite the `Stock` class to use these functions instead:
 
@@ -234,7 +218,9 @@ is often good.
 
 ### Exercise 7.9: Putting it into practice
 
-Rewrite the `Stock` class in the file `stock.py` so that it uses typed properties
-as shown.
+Rewrite the `Stock` class in the file `stock.py` so that it uses typed
+properties as shown.
 
-[Contents](../Contents.md) \| [Previous (7.2 Anonymous Functions)](02_Anonymous_function.md) \| [Next (7.4 Decorators)](04_Function_decorators.md)
+[Contents](../Contents.md) \| [Previous (7.2 Anonymous
+Functions)](02_Anonymous_function.md) \| [Next (7.4
+Decorators)](04_Function_decorators.md)
